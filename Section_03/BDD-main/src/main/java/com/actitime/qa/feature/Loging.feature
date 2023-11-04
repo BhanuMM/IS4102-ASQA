@@ -10,6 +10,7 @@ Feature: As a uesr I should be loging to the Actitime
     Then User click in Loging button
     Then User should be able to successfuly loging to Actitime
     Examples: 
-      | username  | password | 
-      | admin |manager |
-      | trainee |trainee|
+      | username  | password |
+      | socialstat1104@gmail.com |jgAE65BB |
+#      | admin |manager |
+#      | trainee |trainee|

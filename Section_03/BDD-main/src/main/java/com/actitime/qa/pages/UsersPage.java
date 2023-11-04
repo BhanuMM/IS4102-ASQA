@@ -2,10 +2,7 @@ package com.actitime.qa.pages;
 
 import com.actitime.qa.base.TestBase;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -54,11 +51,17 @@ public class UsersPage extends TestBase  {
     }
 
     public void clickSaveandSubmitButton() {
+
         saveButton.click();
     }
 
-    public boolean validateUserCreation() {
-        log.info("Validated User Creation");
-        return successMessage.isDisplayed();
+    public boolean validateUserCreation(String fname, String lname) {
+        String divText = successMessage.getText();
+        String requiredText = "Account for "+fname+" "+lname+" has been created.";
+        boolean isValidationSuccessful = divText.contains(requiredText);
+        System.out.println("divtext:"+ divText);
+        System.out.println("requiredText:"+ requiredText);
+
+        return isValidationSuccessful;
     }
 }

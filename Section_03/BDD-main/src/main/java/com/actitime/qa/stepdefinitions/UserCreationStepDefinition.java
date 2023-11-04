@@ -6,8 +6,6 @@ import com.actitime.qa.pages.LoginPage;
 import com.actitime.qa.pages.UsersPage;
 import com.actitime.qa.util.TestUtil;
 
-//import cucumber.api.java.en.And;
-//import cucumber.api.java.en.Then;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
@@ -18,17 +16,13 @@ public class UserCreationStepDefinition extends TestBase {
 
     LoginPage loginPage;
     HomePage homePage;
-
     UsersPage userpage;
-    String sheetName = "Users";
-    TestUtil testUtil;
 
-
-    @Given("User is logged in to Actitime as an admin user")
-    public void userIsLoggedInToActitimeAsAnAdminUser() {
+    @Given("User is logged in to Actitime as an admin user using username as {string} and password as {string}")
+    public void userIsLoggedInToActitimeAsAnAdminUserUsingUsernameAsAndPasswordAs(String uname, String pwd) {
         initialization();
         loginPage = new LoginPage();
-        homePage = loginPage.loging("socialstat1104@gmail.com","jgAE65BB");
+        homePage = loginPage.loging(uname,pwd);
     }
 
     @When("User clicks on Users and selects New User")
@@ -46,11 +40,9 @@ public class UserCreationStepDefinition extends TestBase {
         userpage.clickSaveandSubmitButton();
     }
 
-    @Then("User validates that the new user is created successfully")
-    public void userValidatesThatTheNewUserIsCreatedSuccessfully() {
-        userpage.validateUserCreation();
+    @Then("User validates that the new user {string} {string} is created successfully")
+    public void userValidatesThatTheNewUserIsCreatedSuccessfully(String fname, String lname) {
+        userpage.validateUserCreation(fname, lname);
         driver.quit();
     }
-
-
 }
